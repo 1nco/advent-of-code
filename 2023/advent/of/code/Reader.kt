@@ -5,7 +5,6 @@ import java.net.URI
 import java.net.http.HttpClient
 import java.net.http.HttpRequest
 import java.net.http.HttpResponse
-import java.nio.file.Paths
 
 
 class Reader {
@@ -21,7 +20,6 @@ class Reader {
                     .uri(URI.create("https://adventofcode.com/2023/day/" + day + "/input"))
                     .header("Cookie", File(appPath + "SessionCookie.txt").readText())
                     .build();
-            System.out.println(Paths.get("").toAbsolutePath().toString());
             val response = client.send(request, HttpResponse.BodyHandlers.ofString())
             val file = File(getInputFileNameByDay(day))
             file.writeText(response.body());
