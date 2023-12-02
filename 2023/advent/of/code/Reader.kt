@@ -11,8 +11,8 @@ class Reader {
 
     companion object {
 
-//        private val appPath = "out/production/advent-of-code/advent/of/code/" // IntelliJ IDEA path
-        private val appPath = "advent/of/code/" //script path
+        private val appPath = "out/production/advent-of-code/advent/of/code/" // IntelliJ IDEA path
+//        private val appPath = "advent/of/code/" //script path
 
         private fun downloadInput(day: String) {
             val client = HttpClient.newBuilder().build();

@@ -1,5 +1,7 @@
 package advent.of.code
 
 fun main() {
-    FirstPuzzle.solve();
+//    FirstPuzzle.solve();
+//    SecondPuzzle.solve();
+    ThirdPuzzle.solve();
 }
