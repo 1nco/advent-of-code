@@ -6,5 +6,6 @@ fun main() {
 //    ThirdPuzzle.solve();
 //    FourthPuzzle.solve();
 //    FifthPuzzle.solve();
-    SixthPuzzle.solve();
+//    SixthPuzzle.solve();
+    SeventhPuzzle.solve();
 }
