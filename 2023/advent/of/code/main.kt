@@ -8,5 +8,7 @@ fun main() {
 //    FifthPuzzle.solve();
 //    SixthPuzzle.solve();
 //    SeventhPuzzle.solve();
-    EightPuzzle.solve();
+//    EightPuzzle.solve();
+//    NinethPuzzle.solve();
+    TenthPuzzle.solve();
 }

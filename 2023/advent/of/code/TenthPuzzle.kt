@@ -2,10 +2,9 @@ package advent.of.code
 
 import java.util.*
 
-class NinthPuzzle {
+class TenthPuzzle {
     companion object {
-
-        private val day = "9";
+        private const val DAY = "10";
 
         private var input: MutableList<String> = arrayListOf();
 
@@ -14,20 +13,20 @@ class NinthPuzzle {
         private var resultSecond = 0L;
 
         fun solve() {
-            var startingTime = Date();
-            input.addAll(Reader.readInput(day));
+            val startingTime = Date();
+            input.addAll(Reader.readInput(DAY));
 
             var lineNum = 0;
             input.forEach { line ->
 
-
                 lineNum++;
             }
 
-            System.out.println(result)
+            println(result)
+            println(resultSecond)
 
-            System.out.println(startingTime);
-            System.out.println(Date());
+            println(startingTime);
+            println(Date());
 
         }
     }
