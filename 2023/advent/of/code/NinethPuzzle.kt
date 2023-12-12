@@ -42,7 +42,10 @@ class NinethPuzzle {
 
         private fun getHistory(line: String): History {
             var history = History(line, arrayListOf());
-            history.sequences.add(line.split(" ").map { v -> v.trim().toLong() }.toMutableList());
+//            history.sequences.add(line.split(" ").map { v -> v.trim().toLong() }.toMutableList());
+            var l = Util.getNumbers(line).toMutableList();
+            var l2 = line.split(" ").map { v -> v.trim().toLong() }.toMutableList()
+            history.sequences.add(Util.getNumbers(line).toMutableList());
 
             var depth = 0;
             var i = 0;
