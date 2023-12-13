@@ -11,6 +11,6 @@ fun main() {
 //    EightPuzzle.solve();
 //    NinethPuzzle.solve();
 //    TenthPuzzle.solve();
-    EleventhPuzzle.solve();
-//    TwelvethPuzzle.solve();
+//    EleventhPuzzle.solve();
+    TwelvethPuzzle.solve();
 }

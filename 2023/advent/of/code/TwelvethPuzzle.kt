@@ -13,8 +13,12 @@ class TwelvethPuzzle {
 
         private var resultSecond = 0L;
 
+        private var resultThird = 0L;
+
         private var results = arrayListOf<Long>()
 
+
+        var alreadyCheckedPerms = mutableMapOf<String, Boolean>();
         fun solve() {
             val startingTime = Date();
             input.addAll(Reader.readInput(DAY));
@@ -70,6 +74,7 @@ class TwelvethPuzzle {
         }
 
         private fun possibleArrangementsForPartTwo(line: String) {
+            alreadyCheckedPerms = mutableMapOf<String, Boolean>();
             var arrangement = line.split(" ")[0];
             var parts: MutableList<Long> = line.split(" ")[1].split(",").map { c -> c.toLong() }.toMutableList();
 
@@ -77,18 +82,68 @@ class TwelvethPuzzle {
             val originalParts = arrayListOf<Long>();
             originalParts.addAll(parts)
 
-            var permutations = arrayListOf<String>()
-            var originalPermutations = arrayListOf<String>()
-            getAllPermutations(arrangement, originalPermutations)
 
-            for (i in 0..3) {
+//            val CONCAT_COUNT = 5;
+            val CONCAT_COUNT = 2;
+
+            // TODO BEGINNING OF SLOW SOLUTION
+            for (i in 0..<CONCAT_COUNT - 1) {
                 arrangement += "?" + originalArrangement;
                 parts.addAll(originalParts);
             }
-
             getAllPermutationsForPartTwo(arrangement, parts);
+            // TODO END OF SLOW SOLUTION
 
+            // TODO THIRD
+
+//            for (i in 0..<CONCAT_COUNT - 1) {
+//                arrangement += "?" + originalArrangement;
+//                parts.addAll(originalParts);
+//            }
+
+//            var firstPerms = arrayListOf<String>()
+//            getAllPermutationsForPartTwoAndStoreInList("$originalArrangement?", firstPerms, originalParts);
+//
+//            var secondPerms = arrayListOf<String>()
+//            getAllPermutationsForPartTwoAndStoreInList("?$originalArrangement", secondPerms, originalParts);
+//
+//            var firstSecondPerms = arrayListOf<String>()
+//
+//            firstPerms.forEach { f ->
+//                secondPerms.forEach { s ->
+//                    if (f.last() == s.first()) {
+//                        firstSecondPerms.add(f + s.substring(1, s.length));
+//                    }
+//                }
+//            }
+//            println("firsts: " + firstPerms.size)
+//            println("seconds: " + secondPerms.size)
+//            resultThird += firstPerms.size * secondPerms.size;
+
+
+            // TODO END THIRD
+
+
+            // TODO BEGINNING OF NEW SOLUTION
+
+//            var permutations = arrayListOf<String>()
+//            var originalPermutations = arrayListOf<String>()
+//            getAllPermutations(arrangement, originalPermutations)
 //            permutations.addAll(originalPermutations.filter { p -> checkPermutation(p, originalParts) });
+//
+//            permutations.forEach { p ->
+//                var arr = p;
+//                for (i in 0..<CONCAT_COUNT - 1) {
+////                arrangement += "?" + originalArrangement;
+////                    parts.addAll(originalParts);
+//                    arr += "?" + originalArrangement;
+//                    parts.addAll(originalParts);
+//                }
+//                getAllPermutationsForPartTwo(p, parts);
+//            }
+            // TODO END OF NEW SOLUTION
+
+
 //
 //
 //            var p1p2 = addNewPermutation(permutations, originalPermutations, originalParts, 2);
@@ -155,10 +210,29 @@ class TwelvethPuzzle {
             }
         }
 
+        private fun getAllPermutationsForPartTwoCOPY(arrangement: String, parts: List<Long>) {
+            // TODO call itself
+            if (arrangement.contains("?")) {
+                var arr1 = arrangement.replaceFirst("?", ".")
+                var arr2 = arrangement.replaceFirst("?", "#")
+                if (checkHalfDonePermutation(arr1, parts)) {
+                    getAllPermutationsForPartTwo(arr1, parts);
+                }
+                if (checkHalfDonePermutation(arr2, parts)) {
+                    getAllPermutationsForPartTwo(arr2, parts);
+                }
+            } else {
+                if (checkPermutation(arrangement, parts)) {
+                    resultSecond++;
+                }
+            }
+        }
+
         private fun getAllPermutationsForPartTwoAndStoreInList(arrangement: String, permutations: MutableList<String>, parts: List<Long>) {
             if (arrangement.contains("?")) {
                 var arr1 = arrangement.replaceFirst("?", ".")
                 var arr2 = arrangement.replaceFirst("?", "#")
+
                 if (checkHalfDonePermutation(arr1, parts)) {
                     getAllPermutationsForPartTwoAndStoreInList(arr1, permutations, parts);
                 }
@@ -176,21 +250,29 @@ class TwelvethPuzzle {
             val groups = arrangement.split(".").filter { a -> a != "" }
             var canBeValid = true;
             var breakFor = false;
-            for (i in 0..parts.size - 1) {
-                if (!breakFor) {
-                    if (i < groups.size) {
-                        if (groups[i].contains("?")) {
-                            breakFor = true;
-                        }
-                        if (!groups[i].contains("?")) {
-                            if (getOccurencesOfAChar(groups[i], '#') == parts[i]) {
+            var i = 0;
+            while (canBeValid && !breakFor && i < parts.size) {
+//            }
+//            for (i in 0..parts.size - 1) {
+//                if (!breakFor) {
+                if (i < groups.size) {
+                    if (groups[i].contains("?")) {
+//                            if (getOccurencesOfAChar(groups[i], '#') > parts[i]) {
+//                                canBeValid = false
+//                            }
+                        breakFor = true;
+                    }
+                    if (!groups[i].contains("?")) {
+                        if (getOccurencesOfAChar(groups[i], '#') == parts[i]) {
 
-                            } else {
-                                canBeValid = false;
-                            };
-                        }
+                        } else {
+                            canBeValid = false;
+                            breakFor = true;
+                        };
                     }
                 }
+//                }
+                i++;
             }
             return canBeValid;
         }
@@ -225,7 +307,9 @@ class TwelvethPuzzle {
                 println(lineNum)
                 lineNum++;
             }
-            println(resultSecond)
+            println("second: $resultSecond")
+
+            println("third: $resultThird");
         }
     }
 }
