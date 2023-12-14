@@ -23,6 +23,18 @@ class Util {
             return map;
         }
 
+        fun createCopy(map: MutableList<MutableList<String>>): MutableList<MutableList<String>> {
+            val copy: MutableList<MutableList<String>> = arrayListOf();
+
+            for (i in 0..<map.size) {
+                copy.add(arrayListOf());
+                for (j in 0..<map[0].size) {
+                    copy[i].add(map[i][j])
+                }
+            }
+            return copy;
+        }
+
         fun saveMapToFile(map: MutableList<MutableList<String>>, fileName: String = "test") {
             val file = File("out/production/advent-of-code/advent/of/code/inputs/$fileName.txt");
             val output = arrayListOf<String>()
