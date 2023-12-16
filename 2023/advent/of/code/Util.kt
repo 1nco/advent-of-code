@@ -8,6 +8,10 @@ class Util {
             return Regex("-?\\d+").findAll(line).toList().map { it.value.toLong() };
         }
 
+        fun getAlphaNumericalCharacters(line: String): String {
+            return Regex("([A-Za-z])+").findAll(line).toList().map { it.value.toString() }.joinToString("");
+        }
+
         fun initMap(input: List<String>): MutableList<MutableList<String>> {
             val map: MutableList<MutableList<String>> = arrayListOf();
             var currLine = 0;
