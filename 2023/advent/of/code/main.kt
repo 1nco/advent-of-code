@@ -15,5 +15,6 @@ fun main() {
 //    TwelvethPuzzle.solve();
 //    `13thPuzzle`.solve();
 //    `14thPuzzle`.solve();
-    `15thPuzzle`.solve();
+//    `15thPuzzle`.solve();
+    `16thPuzzle`.solve();
 }
