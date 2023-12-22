@@ -38,5 +38,8 @@ build/
 ### Don't commit Session Cookie to a public Github repository ###
 SessionCookie.txt
 
+### Don't commit inputs
+*.txt
+
 ## don't commit jars
 *.jar
