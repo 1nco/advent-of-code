@@ -19,5 +19,8 @@ fun main() {
 //    `16thPuzzle`.solve();
 //    `17thPuzzle`.solve();
 //    `18thPuzzle`.solve();
-    `22thPuzzle`.solve();
+//    `19thPuzzle`.solve();
+    `20thPuzzle`.solve();
+//    `22thPuzzle`.solve();
+//    `23thPuzzle`.solve();
 }
