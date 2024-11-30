@@ -1,6 +1,7 @@
-package advent.of.code
+package advent.of.code.y2023
 
 import java.util.*
+import advent.of.code.*
 
 class TwelvethPuzzle {
     companion object {
@@ -22,7 +23,7 @@ class TwelvethPuzzle {
         var validArrangementCounts: MutableMap<String, Long> = mutableMapOf();
         fun solve() {
             val startingTime = Date();
-            input.addAll(Reader.readInput(DAY));
+            input.addAll(Reader.readInput("2023",DAY));
 
             first();
 

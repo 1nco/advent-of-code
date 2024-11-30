@@ -1,4 +1,4 @@
-package advent.of.code
+package advent.of.code.y2023
 
 import utils.Util
 import java.util.*
@@ -17,14 +17,14 @@ object `13thPuzzle` {
 
     fun solve() {
         val startingTime = Date();
-        advent.of.code.`13thPuzzle`.input.addAll(advent.of.code.Reader.Companion.readInput(advent.of.code.`13thPuzzle`.DAY));
+        advent.of.code.y2023.`13thPuzzle`.input.addAll(advent.of.code.Reader.readInput("2023",DAY));
 
-        advent.of.code.`13thPuzzle`.first();
+        advent.of.code.y2023.`13thPuzzle`.first();
 
-        advent.of.code.`13thPuzzle`.second();
+        advent.of.code.y2023.`13thPuzzle`.second();
 
-        println("first: ${advent.of.code.`13thPuzzle`.result}");
-        println("second: ${advent.of.code.`13thPuzzle`.resultSecond}");
+        println("first: ${advent.of.code.y2023.`13thPuzzle`.result}");
+        println("second: ${advent.of.code.y2023.`13thPuzzle`.resultSecond}");
 
 
         println(startingTime);
@@ -33,53 +33,46 @@ object `13thPuzzle` {
     }
 
     fun first() {
-        advent.of.code.`13thPuzzle`.mapCount = 1;
+        advent.of.code.y2023.`13thPuzzle`.mapCount = 1;
         var lines: MutableList<String> = arrayListOf();
-        advent.of.code.`13thPuzzle`.input.forEach { l ->
+        advent.of.code.y2023.`13thPuzzle`.input.forEach { l ->
             if (l != "") {
                 lines.add(l)
             } else {
-                advent.of.code.`13thPuzzle`.result += advent.of.code.`13thPuzzle`.checkMap(
-                    Util.Companion.initMap(
-                        lines
-                    )
-                )!!
-                advent.of.code.`13thPuzzle`.mapCount++;
+                advent.of.code.y2023.`13thPuzzle`.result += advent.of.code.y2023.`13thPuzzle`.checkMap(Util.Companion.initMap(
+                    lines))!!
+                advent.of.code.y2023.`13thPuzzle`.mapCount++;
                 lines = arrayListOf();
             }
         }
-        advent.of.code.`13thPuzzle`.result += advent.of.code.`13thPuzzle`.checkMap(
-            Util.Companion.initMap(
-                lines
-            )
-        )!!;
+        advent.of.code.y2023.`13thPuzzle`.result += advent.of.code.y2023.`13thPuzzle`.checkMap(Util.Companion.initMap(
+            lines))!!;
     }
 
     fun second() {
-        advent.of.code.`13thPuzzle`.mapCount = 1;
+        advent.of.code.y2023.`13thPuzzle`.mapCount = 1;
         var lines: MutableList<String> = arrayListOf();
-        advent.of.code.`13thPuzzle`.input.forEach { l ->
+        advent.of.code.y2023.`13thPuzzle`.input.forEach { l ->
             if (l != "") {
                 lines.add(l)
             } else {
-                val newReflection =
-                    advent.of.code.`13thPuzzle`.fixSmudgeAndGetNewReflection(Util.Companion.initMap(lines))
+                val newReflection = advent.of.code.y2023.`13thPuzzle`.fixSmudgeAndGetNewReflection(Util.Companion.initMap(
+                    lines))
                 if (newReflection != null) {
-                    advent.of.code.`13thPuzzle`.resultSecond += newReflection;
+                    advent.of.code.y2023.`13thPuzzle`.resultSecond += newReflection;
                 } else {
-                    println("Something's wrong with map ${advent.of.code.`13thPuzzle`.mapCount}");
+                    println("Something's wrong with map ${advent.of.code.y2023.`13thPuzzle`.mapCount}");
                 }
-                advent.of.code.`13thPuzzle`.mapCount++;
+                advent.of.code.y2023.`13thPuzzle`.mapCount++;
                 lines = arrayListOf();
             }
         }
 
-        val newReflection =
-            advent.of.code.`13thPuzzle`.fixSmudgeAndGetNewReflection(Util.Companion.initMap(lines))
+        val newReflection = advent.of.code.y2023.`13thPuzzle`.fixSmudgeAndGetNewReflection(Util.Companion.initMap(lines))
         if (newReflection != null) {
-            advent.of.code.`13thPuzzle`.resultSecond += newReflection;
+            advent.of.code.y2023.`13thPuzzle`.resultSecond += newReflection;
         } else {
-            println("Something's wrong with map ${advent.of.code.`13thPuzzle`.mapCount}");
+            println("Something's wrong with map ${advent.of.code.y2023.`13thPuzzle`.mapCount}");
         }
     }
 
@@ -88,24 +81,18 @@ object `13thPuzzle` {
         val horizontalReflectionPositions: MutableList<Long> = arrayListOf();
         for (i in 0..<map.size) {
             for (j in 0..<map[0].size) {
-                val verticalReflectionPosition = advent.of.code.`13thPuzzle`.checkReflectionVerticalP2(
-                    advent.of.code.`13thPuzzle`.fixSmudge(
-                        map,
-                        i,
-                        j
-                    ), map
-                );
+                val verticalReflectionPosition = advent.of.code.y2023.`13thPuzzle`.checkReflectionVerticalP2(advent.of.code.y2023.`13thPuzzle`.fixSmudge(
+                    map,
+                    i,
+                    j), map);
                 if (verticalReflectionPosition != null) {
                     verticalReflectionPositions.add(verticalReflectionPosition);
                 }
 
-                val horizontalReflectionPosition = advent.of.code.`13thPuzzle`.checkReflectionHorizontalP2(
-                    advent.of.code.`13thPuzzle`.fixSmudge(
-                        map,
-                        i,
-                        j
-                    ), map
-                );
+                val horizontalReflectionPosition = advent.of.code.y2023.`13thPuzzle`.checkReflectionHorizontalP2(advent.of.code.y2023.`13thPuzzle`.fixSmudge(
+                    map,
+                    i,
+                    j), map);
                 if (horizontalReflectionPosition != null) {
                     horizontalReflectionPositions.add(horizontalReflectionPosition);
                 }
@@ -145,11 +132,11 @@ object `13thPuzzle` {
     }
 
     private fun checkMap(map: MutableList<MutableList<String>>): Long? {
-        val verticalLinePosition = advent.of.code.`13thPuzzle`.checkReflectionVertical(map);
+        val verticalLinePosition = advent.of.code.y2023.`13thPuzzle`.checkReflectionVertical(map);
         if (verticalLinePosition != null) {
             return verticalLinePosition;
         } else {
-            val horizontalLinePosition = advent.of.code.`13thPuzzle`.checkReflectionHorizontal(map);
+            val horizontalLinePosition = advent.of.code.y2023.`13thPuzzle`.checkReflectionHorizontal(map);
             if (horizontalLinePosition != null) {
                 return horizontalLinePosition * 100;
             } else {
@@ -209,9 +196,8 @@ object `13thPuzzle` {
             }
         }
 
-        val reflectionPosition = reflectionPositions[0].filter { p -> reflectionPositions.all { l -> l.contains(p) } }.filter { r -> r != advent.of.code.`13thPuzzle`.checkMap(
-            originalMap
-        )
+        val reflectionPosition = reflectionPositions[0].filter { p -> reflectionPositions.all { l -> l.contains(p) } }.filter { r -> r != advent.of.code.y2023.`13thPuzzle`.checkMap(
+            originalMap)
         }.getOrNull(0);
 
         return reflectionPosition;
@@ -260,9 +246,8 @@ object `13thPuzzle` {
             }
         }
 
-        val reflectionPosition = reflectionPositions.filter { r -> r * 100 != advent.of.code.`13thPuzzle`.checkMap(
-            originalMap
-        )
+        val reflectionPosition = reflectionPositions.filter { r -> r * 100 != advent.of.code.y2023.`13thPuzzle`.checkMap(
+            originalMap)
         }.getOrNull(0);
 
         return reflectionPosition;

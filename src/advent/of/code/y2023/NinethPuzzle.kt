@@ -1,7 +1,8 @@
-package advent.of.code
+package advent.of.code.y2023
 
 import utils.Util
 import java.util.*
+import advent.of.code.*
 
 class NinethPuzzle {
     companion object {
@@ -18,7 +19,7 @@ class NinethPuzzle {
 
         fun solve() {
             var startingTime = Date();
-            input.addAll(Reader.readInput(day));
+            input.addAll(Reader.readInput("2023",DAY));
 
             var lineNum = 0;
             input.forEach { line ->

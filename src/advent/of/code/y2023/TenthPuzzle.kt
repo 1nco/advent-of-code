@@ -1,7 +1,8 @@
-package advent.of.code
+package advent.of.code.y2023
 
 import java.util.*
 import kotlin.math.absoluteValue
+import advent.of.code.*
 
 class TenthPuzzle {
     companion object {
@@ -31,7 +32,7 @@ class TenthPuzzle {
 
         fun solve() {
             val startingTime = Date();
-            input.addAll(Reader.readInput(DAY));
+            input.addAll(Reader.readInput("2023",DAY));
             initMap();
             var lineNum = 0;
             input.forEach { line ->

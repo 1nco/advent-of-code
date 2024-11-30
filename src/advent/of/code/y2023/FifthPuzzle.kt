@@ -1,7 +1,8 @@
-package advent.of.code
+package advent.of.code.y2023
 
 import java.util.*
 import kotlin.collections.ArrayList
+import advent.of.code.*
 
 class FifthPuzzle {
     companion object {
@@ -28,7 +29,7 @@ class FifthPuzzle {
 
         fun solve() {
             System.out.println(Date());
-            input.addAll(Reader.readInput(day));
+            input.addAll(Reader.readInput("2023",DAY));
             var lineNum = 0;
             input.forEach { line ->
                 if (lineNum == 0) {

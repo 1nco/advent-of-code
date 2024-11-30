@@ -11,30 +11,29 @@ class Reader {
 
     companion object {
 
-//        private val appPath = "out/production/advent-of-code/advent/of/code/" // IntelliJ IDEA path
         private val appPath = "src/advent/of/code/" //script path
 
-        private fun downloadInput(day: String) {
+        private fun downloadInput(year: String, day: String) {
             val client = HttpClient.newBuilder().build();
             val request = HttpRequest.newBuilder()
-                    .uri(URI.create("https://adventofcode.com/2023/day/" + day + "/input"))
+                    .uri(URI.create("https://adventofcode.com/$year/day/$day/input"))
                     .header("Cookie", File(appPath + "SessionCookie.txt").readText())
                     .build();
             val response = client.send(request, HttpResponse.BodyHandlers.ofString())
-            val file = File(getInputFileNameByDay(day))
+            val file = File(getInputFileNameByDay(year, day))
             file.writeText(response.body());
         }
 
-        fun readInput(day: String): List<String> {
-            var file = File(getInputFileNameByDay(day));
+        fun readInput(year: String, day: String): List<String> {
+            var file = File(getInputFileNameByDay(year, day));
             if (!file.exists()) {
-                downloadInput(day);
+                downloadInput(year, day);
             }
             return file.useLines { it.toList() }
         }
 
-        private fun getInputFileNameByDay(day: String): String {
-            return appPath + "inputs/" + day + ".txt";
+        private fun getInputFileNameByDay(year: String, day: String): String {
+            return appPath + "inputs/$year-$day.txt";
         }
     }
 

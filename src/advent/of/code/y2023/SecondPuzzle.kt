@@ -1,4 +1,6 @@
-package advent.of.code
+package advent.of.code.y2023
+
+import advent.of.code.*
 
 class SecondPuzzle {
     companion object {
@@ -14,7 +16,7 @@ class SecondPuzzle {
         private var sumOfPowers = 0;
 
         fun solve() {
-            input.addAll(Reader.readInput(day));
+            input.addAll(Reader.readInput("2023",DAY));
             input.forEach {
                 val games = getGames(it);
                 if (areAllGamesPossible(games)) {

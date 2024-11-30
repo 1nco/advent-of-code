@@ -1,8 +1,9 @@
-package advent.of.code
+package advent.of.code.y2023
 
-import advent.of.code.types.Graph
+import advent.of.code.y2023.types.Graph
 import utils.Util
 import java.util.*
+import advent.of.code.*
 
 object `17thPuzzle` {
 
@@ -16,7 +17,7 @@ object `17thPuzzle` {
 
     fun solve() {
         val startingTime = Date();
-        input.addAll(Reader.readInput(DAY));
+        input.addAll(Reader.readInput("2023",DAY));
 
         first();
 

@@ -1,6 +1,7 @@
-package advent.of.code
+package advent.of.code.y2023
 
 import utils.readInput
+import advent.of.code.*
 
 class FirstPuzzle {
     companion object {

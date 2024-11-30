@@ -1,8 +1,9 @@
-package advent.of.code
+package advent.of.code.y2023
 
-import advent.of.code.types.Pos
+import advent.of.code.y2023.types.Pos
 import java.util.*
 import kotlin.math.absoluteValue
+import advent.of.code.*
 
 object `18thPuzzle` {
 
@@ -19,7 +20,7 @@ object `18thPuzzle` {
 
     fun solve() {
         val startingTime = Date();
-        input.addAll(Reader.readInput(DAY));
+        input.addAll(Reader.readInput("2023",DAY));
 
 //        first();
 

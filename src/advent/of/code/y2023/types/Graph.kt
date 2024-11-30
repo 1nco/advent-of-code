@@ -1,4 +1,4 @@
-package advent.of.code.types
+package advent.of.code.y2023.types
 fun <T> List<Pair<T, T>>.getUniqueValuesFromPairs(): Set<T> = this
     .map { (a, b) -> listOf(a, b) }
     .flatten()
