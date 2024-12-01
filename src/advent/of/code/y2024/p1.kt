@@ -2,6 +2,7 @@ package advent.of.code.y2024
 
 import advent.of.code.Reader
 import java.util.*
+import kotlin.math.abs
 
 object p1 {
 
@@ -20,7 +21,7 @@ object p1 {
 
         first();
 
-//        second();
+        second();
 
         println("first: $firstResult");
         println("second: $secondResult");
@@ -33,15 +34,39 @@ object p1 {
 
     private fun first() {
 //        val map = Util.initMap(input);
+        var leftList: MutableList<Int> = ArrayList();
+        var rightList: MutableList<Int> = ArrayList();
+        input.forEach{ i ->
+            leftList.add(i.split("   ")[0].toInt());
+            rightList.add(i.split("   ")[1].toInt())
+        }
 
-        firstResult = 0;
+        leftList.sort();
+        rightList.sort();
+        var dist = 0;
+        for (i in 0 until leftList.size) {
+            dist += abs(leftList.get(i)- rightList.get(i));
+        }
+        firstResult = dist.toLong();
     }
 
 
     private fun second() {
 
+        var leftList: MutableList<Int> = ArrayList();
+        var rightList: MutableList<Int> = ArrayList();
+        input.forEach{ i ->
+            leftList.add(i.split("   ")[0].toInt());
+            rightList.add(i.split("   ")[1].toInt())
+        }
+
+        var sim = 0;
+        for (i in 0 until leftList.size) {
+            sim += leftList.get(i) * rightList.count { e -> e.equals(leftList.get(i)) }
+        }
+
 //        val map = Util.initMap(input);
 
-        secondResult = 0;
+        secondResult = sim.toLong();
     }
 }
