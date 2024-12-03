@@ -32,6 +32,14 @@ class Reader {
             return file.useLines { it.toList() }
         }
 
+        fun readInputAsString(year: String, day: String): String {
+            var file = File(getInputFileNameByDay(year, day));
+            if (!file.exists()) {
+                downloadInput(year, day);
+            }
+            return file.readText();
+        }
+
         private fun getInputFileNameByDay(year: String, day: String): String {
             return appPath + "inputs/$year-$day.txt";
         }
