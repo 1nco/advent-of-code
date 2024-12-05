@@ -17,7 +17,7 @@ object p3 {
 
     fun solve() {
         val startingTime = Date();
-        input.addAll(Reader.readInput(YEAR, DAY));
+        input.add(Reader.readInputAsString(YEAR, DAY));
 
         first();
 

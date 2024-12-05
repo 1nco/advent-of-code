@@ -91,5 +91,9 @@ class Util {
             }
             return maxLcm
         }
+
+        fun mapLineToLongList(line: String, split: String = " "): MutableList<Long> {
+            return line.split(split).map(String::toLong).toMutableList();
+        }
     }
 }
