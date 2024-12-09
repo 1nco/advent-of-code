@@ -1,6 +1,7 @@
 package utils
 
 import java.io.File
+import kotlin.math.absoluteValue
 
 class Util {
     companion object {
@@ -95,5 +96,21 @@ class Util {
         fun mapLineToLongList(line: String, split: String = " "): MutableList<Long> {
             return line.split(split).map(String::toLong).toMutableList();
         }
+
+        fun shoelace(list: List<Coordinate>): Long {
+            return list
+                .reversed()
+                .asSequence()
+                .plus(list.last())
+                .windowed(2)
+                .sumOf { (a, b) -> a.x * b.y - a.y * b.x}
+                .absoluteValue
+                .minus(list.size)
+                .div(2)
+                .plus(1)
+                .toLong()
+        }
+
+        data class Coordinate(val x: Long, val y: Long);
     }
 }
