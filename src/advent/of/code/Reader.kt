@@ -37,7 +37,7 @@ class Reader {
             if (!file.exists()) {
                 downloadInput(year, day);
             }
-            return file.readText();
+            return file.readText().trim();
         }
 
         private fun getInputFileNameByDay(year: String, day: String): String {

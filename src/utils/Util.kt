@@ -80,7 +80,7 @@ class Util {
             return result
         }
 
-        private fun findLCM(a: Long, b: Long): Long {
+        fun findLCM(a: Long, b: Long): Long {
             val larger = if (a > b) a else b
             val maxLcm = a * b
             var lcm = larger
@@ -111,6 +111,10 @@ class Util {
                 .toLong()
         }
 
-        data class Coordinate(val x: Long, val y: Long);
+//        data class Coordinate(val x: Long, val y: Long);
+        data class CoordinateWithValue(var x: Int, var y: Int, var value: Int) {}
+
     }
+    data class Coordinate(var x: Long, var y: Long);
+    data class CoordinateWithType(var x: Int, var y: Int, var type: String) {}
 }

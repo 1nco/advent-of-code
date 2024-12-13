@@ -2,7 +2,7 @@ package advent.of.code.y2023
 
 import advent.of.code.y2023.types.Graph
 
-fun dijkstra(graph: Graph<String>, start: String, map: MutableList<MutableList<Int>>): Map<String, String?> {
+fun dijkstra(graph: Graph<String>, start: String): Map<String, String?> {
     var S: MutableSet<String> = mutableSetOf() // a subset of vertices, for which we know the true distance
 
     /*

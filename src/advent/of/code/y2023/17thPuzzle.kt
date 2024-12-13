@@ -46,7 +46,7 @@ object `17thPuzzle` {
 
         val start = "0;0"
         val end = "${map.size - 1};${map[0].size - 1}"
-        val shortestPathTree = dijkstra(Graph(weights), start, arrayListOf())
+        val shortestPathTree = dijkstra(Graph(weights), start)
         val shortestPathBetweenStartAndEnd = shortestPath(shortestPathTree, start, end);
         result = shortestPathBetweenStartAndEnd.map { vertex -> map[vertex.split(";")[0].toInt()][vertex.split(";")[1].toInt()] }.sum().toLong();
     }
