@@ -29,7 +29,6 @@ class p17 {
     var registerC = 0L
     var pointer = 0;
     var program: List<Long> = arrayListOf();
-    var mods: MutableList<Long> = arrayListOf();
 
 
     fun solve() {
@@ -37,7 +36,7 @@ class p17 {
         inputAsString = Reader.readInputAsString(YEAR, DAY);
         input.addAll(Reader.readInput(YEAR, DAY));
 
-
+        first();
         second();
 
         println("first: $firstResult");
@@ -65,40 +64,48 @@ class p17 {
     private fun second() {
         program = Util.getNumbers(input[4])
 
-//        output = (registerA / 2ˆ((registerA mod 8) xor 3)) mod 8
-//        nextRegisterA = registerA / 2ˆ3
-//
-//        3,0 - 49
-//        5,3,0 - 49 * 8 + x= 393
-//        5,5,3,0 - 393 * 8 + x= 3145
-//        1,5,5,3,0 - 3145 * 8 + x= 25162
-//        4,1,5,5,3,0 - 25162 * 8 = x = 201296
-//        5,4,1,5,5,3,0 - 201296 * 8 + x= 1610370
-//        1,5,4,1,5,5,3,0 - 1610370 * 8 + x = 12883444
-//        3,1,5,4,1,5,5,3,0 - 12883444 * 8 + x = 103067559
-//        0,3,1,5,4,1,5,5,3,0 - 103067559 * 8 + x = 824540476
-//        5,0,3,1,5,4,1,5,5,3,0 - 824540476 * 8 + x = 6596323810
-//        7,5,0,3,1,5,4,1,5,5,3,0 - 6596323810 * 8 + x = 52770590485
-//        3,7,5,0,3,1,5,4,1,5,5,3,0 - 52770590485 * 8 + x = 422164723880
-//        1,3,7,5,0,3,1,5,4,1,5,5,3,0 - 422164723880 * 8 + x = 3377317791096
-//        4,1,3,7,5,0,3,1,5,4,1,5,5,3,0 - 3377317791096 * 8 + x = 27018542328773
-//        2,4,1,3,7,5,0,3,1,5,4,1,5,5,3,0 - 27018542328773 * 8 + x = 216148338630253
+        var programAsString = program.joinToString(separator = ",");
+        var done = false;
+        var i = 0L
+        var tempProgram = ""
+        while (!done) {
 
-        var programAsString = "2,4,1,3,7,5,0,3,1,5,4,1,5,5,3,0"
 
-        for (i in 216148338630184 ..<Long.MAX_VALUE) {
-                registerA = Util.getNumbers(input[0]).get(0)
-                registerB = Util.getNumbers(input[1]).get(0)
-                registerC = Util.getNumbers(input[2]).get(0)
-                pointer = 0;
-                output = arrayListOf();
+            registerA = Util.getNumbers(input[0]).get(0)
+            registerB = Util.getNumbers(input[1]).get(0)
+            registerC = Util.getNumbers(input[2]).get(0)
+            pointer = 0;
+            output = arrayListOf();
 
-                registerA = i.toLong()
-                runProgramSecond(registerA.toLong());
+
+            for (j in 0..<16) {
+                tempProgram = program.subList(program.size - 1 - j, program.size).joinToString(separator = ",")
+
+
+                for (k in 0..<100000) {
+                    if (k != 0) {
+                        i++;
+                    }
+                    pointer = 0;
+                    registerA = i.toLong()
+                    output = arrayListOf();
+                    runProgram();
+                    if (output.joinToString(separator = ",") == tempProgram) {
+                        i.println();
+                        if (output.joinToString(separator = ",") != programAsString) {
+                            i = i * 8;
+                        }
+                        break;
+                    }
+
+                }
+
+
                 if (output.joinToString(separator = ",") == programAsString) {
                     secondResult = i.toLong()
-                    break;
+                    done = true;
                 }
+            }
         }
 
         output.joinToString(separator = ",").println()
@@ -144,18 +151,6 @@ class p17 {
     private fun runProgramSecond(original: Long) {
         var done = false
         while (pointer < program.size && !done) {
-
-//            for (i in 0..<output.size) {
-//                if (output[i] != program[i]) {
-//                    done = true
-//                    break;
-//                }
-//            }
-
-//            if (output.size > 6 && output[0] == program[0] && output[1] == program[1] && output[2] == program[2] && output[3] == program[3] && output[4] == program[4] && output[5] == program[5] /*&& output[6] == program[6] && output[7] == program[7] && output[8] == program[8] && output[9] == program[9]*/) {
-//                mods.add(original.mod(8).toLong())
-//                original.println()
-//            }
 
             var pointerValue = program[pointer]
             var operand = program[pointer + 1]

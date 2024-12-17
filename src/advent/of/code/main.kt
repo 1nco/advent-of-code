@@ -2,7 +2,7 @@ package advent.of.code
 
 import advent.of.code.y2024.*
 
-const val DAY = "16";
+const val DAY = "18";
 
 fun main() {
     if (p1.DAY == DAY) p1.solve();
@@ -22,4 +22,5 @@ fun main() {
     if (p15.DAY == DAY) p15().solve();
     if (p16.DAY == DAY) p16().solve();
     if (p17.DAY == DAY) p17().solve();
+    if (p18.DAY == DAY) p18().solve();
 }
