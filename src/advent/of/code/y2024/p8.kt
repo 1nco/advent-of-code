@@ -42,15 +42,15 @@ class p8 {
     }
 
     private fun first() {
-        var uniqueLocations: MutableList<Util.Coordinate> = mutableListOf();
-        var antennas: MutableMap<String, MutableList<Util.Coordinate>> = mutableMapOf();
+        var uniqueLocations: MutableList<Util.CoordinateLong> = mutableListOf();
+        var antennas: MutableMap<String, MutableList<Util.CoordinateLong>> = mutableMapOf();
         var map = Util.initMap(input);
         var i = 0L;
         map.forEach { line ->
             var j = 0L;
             line.forEach { column ->
                 if (column != ".") {
-                    antennas.getOrPut(column) { mutableListOf() }.add(Util.Coordinate(i, j))
+                    antennas.getOrPut(column) { mutableListOf() }.add(Util.CoordinateLong(i, j))
                 }
                 j++;
             }
@@ -60,7 +60,7 @@ class p8 {
         for (i in 0..<map.size) {
             for (j in 0..<(map[0].size)) {
                 antennas.forEach { coordinates ->
-                    oneLineAndDoubleDist(Util.Coordinate(i.toLong(), j.toLong()),
+                    oneLineAndDoubleDist(Util.CoordinateLong(i.toLong(), j.toLong()),
                         coordinates.value,
                         uniqueLocations)
                 }
@@ -71,15 +71,15 @@ class p8 {
     }
 
     private fun second() {
-        var uniqueLocations: MutableList<Util.Coordinate> = mutableListOf();
-        var antennas: MutableMap<String, MutableList<Util.Coordinate>> = mutableMapOf();
+        var uniqueLocations: MutableList<Util.CoordinateLong> = mutableListOf();
+        var antennas: MutableMap<String, MutableList<Util.CoordinateLong>> = mutableMapOf();
         var map = Util.initMap(input);
         var i = 0L;
         map.forEach { line ->
             var j = 0L;
             line.forEach { column ->
                 if (column != ".") {
-                    antennas.getOrPut(column) { mutableListOf() }.add(Util.Coordinate(i, j))
+                    antennas.getOrPut(column) { mutableListOf() }.add(Util.CoordinateLong(i, j))
                 }
                 j++;
             }
@@ -89,7 +89,7 @@ class p8 {
         for (i in 0..<map.size) {
             for (j in 0..<(map[0].size)) {
                 antennas.forEach { coordinates ->
-                    oneLine(Util.Coordinate(i.toLong(), j.toLong()), coordinates.value, uniqueLocations, map)
+                    oneLine(Util.CoordinateLong(i.toLong(), j.toLong()), coordinates.value, uniqueLocations, map)
                 }
             }
         }
@@ -107,9 +107,9 @@ class p8 {
         secondResult = uniqueLocations.distinct().size.toLong();
     }
 
-    fun oneLine(c1: Util.Coordinate,
-                cList: List<Util.Coordinate>,
-                uniqueLocations: MutableList<Util.Coordinate>,
+    fun oneLine(c1: Util.CoordinateLong,
+                cList: List<Util.CoordinateLong>,
+                uniqueLocations: MutableList<Util.CoordinateLong>,
                 map: MutableList<MutableList<String>>) {
         for (i in 0..<cList.size) {
             for (j in 0..<cList.size) {
@@ -121,7 +121,7 @@ class p8 {
                         var k = 0;
                         var done = false;
                         while (!done) {
-                            val newCoord = Util.Coordinate(c1.x + (k * (cList[i].x - cList[j].x)),
+                            val newCoord = Util.CoordinateLong(c1.x + (k * (cList[i].x - cList[j].x)),
                                 c1.y + (k * (cList[i].y - cList[j].y)));
                             if (newCoord.x >= 0 && newCoord.x < map.size && newCoord.y >= 0 && newCoord.y < map[0].size) {
                                 addToUniqueLocations(uniqueLocations, newCoord)
@@ -137,19 +137,19 @@ class p8 {
         }
     }
 
-    fun addToUniqueLocations(uniqueLocations: MutableList<Util.Coordinate>, c: Util.Coordinate) {
+    fun addToUniqueLocations(uniqueLocations: MutableList<Util.CoordinateLong>, c: Util.CoordinateLong) {
         if (uniqueLocations.none { l -> c.x == l.x && c.y == l.y }) {
             uniqueLocations.add(c)
         }
     }
 
-    fun distance(c1: Util.Coordinate, c2: Util.Coordinate): Long {
+    fun distance(c1: Util.CoordinateLong, c2: Util.CoordinateLong): Long {
         return abs(c2.x - c1.x) + abs(c2.y - c1.y);
     }
 
-    fun oneLineAndDoubleDist(c1: Util.Coordinate,
-                             cList: List<Util.Coordinate>,
-                             uniqueLocations: MutableList<Util.Coordinate>) {
+    fun oneLineAndDoubleDist(c1: Util.CoordinateLong,
+                             cList: List<Util.CoordinateLong>,
+                             uniqueLocations: MutableList<Util.CoordinateLong>) {
         for (i in 0..<cList.size) {
             for (j in 0..<cList.size) {
                 if (i != j) {

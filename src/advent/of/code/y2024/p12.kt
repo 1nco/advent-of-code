@@ -1,7 +1,6 @@
 package advent.of.code.y2024
 
 import advent.of.code.Reader
-import advent.of.code.y2024.p10.CoordinateWithValue
 import utils.Util.*
 import utils.Util.Companion.initMap
 import utils.println

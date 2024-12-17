@@ -47,9 +47,9 @@ class p13 {
         var i = 0;
         while (i < input.size) {
             if (i + 2 < input.size) {
-                var buttonA = Util.Coordinate(Util.getNumbers(input[i])[0], Util.getNumbers(input[i])[1])
-                var buttonB = Util.Coordinate(Util.getNumbers(input[i + 1])[0], Util.getNumbers(input[i + 1])[1])
-                var prize = Util.Coordinate(Util.getNumbers(input[i + 2])[0], Util.getNumbers(input[i + 2])[1])
+                var buttonA = Util.CoordinateLong(Util.getNumbers(input[i])[0], Util.getNumbers(input[i])[1])
+                var buttonB = Util.CoordinateLong(Util.getNumbers(input[i + 1])[0], Util.getNumbers(input[i + 1])[1])
+                var prize = Util.CoordinateLong(Util.getNumbers(input[i + 2])[0], Util.getNumbers(input[i + 2])[1])
                 var machine = Machine(buttonA, buttonB, prize);
                 machines.add(machine);
             }
@@ -81,9 +81,9 @@ class p13 {
         var i = 0;
         while (i < input.size) {
             if (i + 2 < input.size) {
-                var buttonA = Util.Coordinate(Util.getNumbers(input[i])[0], Util.getNumbers(input[i])[1])
-                var buttonB = Util.Coordinate(Util.getNumbers(input[i + 1])[0], Util.getNumbers(input[i + 1])[1])
-                var prize = Util.Coordinate(Util.getNumbers(input[i + 2])[0], Util.getNumbers(input[i + 2])[1])
+                var buttonA = Util.CoordinateLong(Util.getNumbers(input[i])[0], Util.getNumbers(input[i])[1])
+                var buttonB = Util.CoordinateLong(Util.getNumbers(input[i + 1])[0], Util.getNumbers(input[i + 1])[1])
+                var prize = Util.CoordinateLong(Util.getNumbers(input[i + 2])[0], Util.getNumbers(input[i + 2])[1])
                 var machine = Machine(buttonA, buttonB, prize);
                 machines.add(machine);
             }
@@ -112,5 +112,5 @@ class p13 {
 
     }
 
-    data class Machine(var buttonA: Util.Coordinate, var buttonB: Util.Coordinate, var prize: Util.Coordinate) {}
+    data class Machine(var buttonA: Util.CoordinateLong, var buttonB: Util.CoordinateLong, var prize: Util.CoordinateLong) {}
 }

@@ -1,5 +1,6 @@
 package utils
 
+import java.io.DataOutput
 import java.io.File
 import kotlin.math.absoluteValue
 
@@ -55,8 +56,8 @@ class Util {
             return copy;
         }
 
-        fun saveMapToFile(map: MutableList<MutableList<String>>, fileName: String = "test") {
-            val file = File("src/advent/of/code/inputs/$fileName.txt");
+        fun saveMapToFile(map: MutableList<MutableList<String>>, fileName: String = "test", output: String = "src/advent/of/code/output") {
+            val file = File("$output/$fileName.txt");
             val output = arrayListOf<String>()
             map.forEach { l ->
                 var lineToPrint = "";
@@ -111,10 +112,10 @@ class Util {
                 .toLong()
         }
 
-//        data class Coordinate(val x: Long, val y: Long);
-        data class CoordinateWithValue(var x: Int, var y: Int, var value: Int) {}
-
     }
-    data class Coordinate(var x: Long, var y: Long);
+
+    data class CoordinateLong(var x: Long, var y: Long);
+    data class Coordinate(var x: Int, var y: Int);
     data class CoordinateWithType(var x: Int, var y: Int, var type: String) {}
+    data class CoordinateWithValue(var x: Int, var y: Int, var value: Int) {}
 }

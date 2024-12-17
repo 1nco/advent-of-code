@@ -40,11 +40,11 @@ class p10 {
 
     private fun first() {
         var map = Util.initMap(input);
-        var graph: MutableMap<CoordinateWithValue, MutableList<CoordinateWithValue>> = mutableMapOf();
+        var graph: MutableMap<Util.CoordinateWithValue, MutableList<Util.CoordinateWithValue>> = mutableMapOf();
 
         for (i in 0..<map.size) {
             for (j in 0..<(map[i].size)) {
-                graph.getOrPut(CoordinateWithValue(i, j, map[i][j].toInt())) { mutableListOf() }.addAll(getNeighbours(i,
+                graph.getOrPut(Util.CoordinateWithValue(i, j, map[i][j].toInt())) { mutableListOf() }.addAll(getNeighbours(i,
                     j,
                     map));
             }
@@ -52,7 +52,7 @@ class p10 {
 
         graph.entries.forEach {
             if (it.key.value == 0) {
-                var visited = mutableListOf<CoordinateWithValue>();
+                var visited = mutableListOf<Util.CoordinateWithValue>();
                 dfs(graph, it.key, visited)
                 firstResult += visited.filter { it.value == 9 }.size;
             }
@@ -62,11 +62,11 @@ class p10 {
 
     private fun second() {
         var map = Util.initMap(input);
-        var graph: MutableMap<CoordinateWithValue, MutableList<CoordinateWithValue>> = mutableMapOf();
+        var graph: MutableMap<Util.CoordinateWithValue, MutableList<Util.CoordinateWithValue>> = mutableMapOf();
 
         for (i in 0..<map.size) {
             for (j in 0..<(map[i].size)) {
-                graph.getOrPut(CoordinateWithValue(i, j, map[i][j].toInt())) { mutableListOf() }.addAll(getNeighbours(i,
+                graph.getOrPut(Util.CoordinateWithValue(i, j, map[i][j].toInt())) { mutableListOf() }.addAll(getNeighbours(i,
                     j,
                     map));
             }
@@ -80,9 +80,9 @@ class p10 {
         }
     }
 
-    fun dfs(graph: Map<CoordinateWithValue, List<CoordinateWithValue>>,
-            start: CoordinateWithValue,
-            visited: MutableList<CoordinateWithValue>) {
+    fun dfs(graph: Map<Util.CoordinateWithValue, List<Util.CoordinateWithValue>>,
+            start: Util.CoordinateWithValue,
+            visited: MutableList<Util.CoordinateWithValue>) {
         visited.add(start);
         for (v in graph[start]!!) {
             if (!visited.contains(v) && (v.value == start.value + 1)) {
@@ -91,10 +91,10 @@ class p10 {
         }
     }
 
-    fun bfs(graph: Map<CoordinateWithValue, List<CoordinateWithValue>>,
-            start: CoordinateWithValue): Set<CoordinateWithValue> {
-        val visited = mutableSetOf<CoordinateWithValue>()
-        val queue = ArrayDeque<CoordinateWithValue>()
+    fun bfs(graph: Map<Util.CoordinateWithValue, List<Util.CoordinateWithValue>>,
+            start: Util.CoordinateWithValue): Set<Util.CoordinateWithValue> {
+        val visited = mutableSetOf<Util.CoordinateWithValue>()
+        val queue = ArrayDeque<Util.CoordinateWithValue>()
         queue.add(start)
         while (queue.isNotEmpty()) {
             val vertex = queue.removeFirst()
@@ -106,11 +106,11 @@ class p10 {
         return visited
     }
 
-    fun bfsSecond(graph: Map<CoordinateWithValue, List<CoordinateWithValue>>,
-                  start: CoordinateWithValue): Set<CoordinateWithValue> {
+    fun bfsSecond(graph: Map<Util.CoordinateWithValue, List<Util.CoordinateWithValue>>,
+                  start: Util.CoordinateWithValue): Set<Util.CoordinateWithValue> {
         var asd = 0;
-        val visited = mutableSetOf<CoordinateWithValue>()
-        val queue = ArrayDeque<CoordinateWithValue>()
+        val visited = mutableSetOf<Util.CoordinateWithValue>()
+        val queue = ArrayDeque<Util.CoordinateWithValue>()
         queue.add(start)
         while (queue.isNotEmpty()) {
             val vertex = queue.removeFirst()
@@ -126,22 +126,22 @@ class p10 {
         return visited
     }
 
-    private fun getNeighbours(i: Int, j: Int, map: MutableList<MutableList<String>>): List<CoordinateWithValue> {
-        var list: MutableList<CoordinateWithValue> = mutableListOf<CoordinateWithValue>();
+    private fun getNeighbours(i: Int, j: Int, map: MutableList<MutableList<String>>): List<Util.CoordinateWithValue> {
+        var list: MutableList<Util.CoordinateWithValue> = mutableListOf<Util.CoordinateWithValue>();
         if (i - 1 >= 0) {
-            list.add(CoordinateWithValue(i - 1, j, map[i - 1][j].toInt()))
+            list.add(Util.CoordinateWithValue(i - 1, j, map[i - 1][j].toInt()))
         }
         if (j - 1 >= 0) {
-            list.add(CoordinateWithValue(i, j - 1, map[i][j - 1].toInt()))
+            list.add(Util.CoordinateWithValue(i, j - 1, map[i][j - 1].toInt()))
         }
         if (i + 1 < map.size) {
-            list.add(CoordinateWithValue(i + 1, j, map[i + 1][j].toInt()))
+            list.add(Util.CoordinateWithValue(i + 1, j, map[i + 1][j].toInt()))
         }
         if (j + 1 < map[0].size) {
-            list.add(CoordinateWithValue(i, j + 1, map[i][j + 1].toInt()))
+            list.add(Util.CoordinateWithValue(i, j + 1, map[i][j + 1].toInt()))
         }
         return list;
     }
 
-    data class CoordinateWithValue(var x: Int, var y: Int, var value: Int) {}
+//    data class Util.CoordinateWithValue(var x: Int, var y: Int, var value: Int) {}
 }
