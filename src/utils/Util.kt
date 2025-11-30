@@ -1,7 +1,7 @@
 package utils
 
-import java.io.DataOutput
 import java.io.File
+import java.util.PriorityQueue
 import kotlin.math.absoluteValue
 
 class Util {
@@ -112,6 +112,30 @@ class Util {
                 .toLong()
         }
 
+    }
+
+    fun dijkstra(graph: MutableMap<Util.Coordinate, MutableList<Pair<Util.Coordinate, Int>>>,
+                 start: Util.Coordinate): Map<Util.Coordinate, Int> {
+        val distances = mutableMapOf<Util.Coordinate, Int>().withDefault { Int.MAX_VALUE }
+        val priorityQueue = PriorityQueue<Pair<Util.Coordinate, Int>>(compareBy { it.second }).apply { add(start to 0) }
+        val visited = mutableSetOf<Pair<Util.Coordinate, Int>>()
+
+        distances[start] = 0
+
+        while (priorityQueue.isNotEmpty()) {
+            val (node, currentDist) = priorityQueue.poll()
+            if (visited.add(node to currentDist)) {
+                graph[node]?.forEach { (adjacent, weight) ->
+                    var w = weight;
+                    val totalDist = currentDist + w
+                    if (totalDist < distances.getValue(adjacent)) {
+                        distances[adjacent] = totalDist
+                        priorityQueue.add(adjacent to totalDist)
+                    }
+                }
+            }
+        }
+        return distances
     }
 
     data class CoordinateLong(var x: Long, var y: Long);

@@ -4,9 +4,12 @@ import advent.of.code.Reader
 import java.util.*
 import kotlin.math.abs
 
-object p2 {
-    const val YEAR = "2024";
-    const val DAY = "2";
+class p2 {
+
+    companion object {
+        val YEAR = "2024";
+        val DAY = "2";
+    }
 
     private var input: MutableList<String> = arrayListOf();
 

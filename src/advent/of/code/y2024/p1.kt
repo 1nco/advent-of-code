@@ -4,10 +4,12 @@ import advent.of.code.Reader
 import java.util.*
 import kotlin.math.abs
 
-object p1 {
+class p1 {
 
-    const val YEAR = "2024";
-    const val DAY = "1";
+    companion object {
+        const val YEAR = "2024";
+        const val DAY = "1";
+    }
 
     private var input: MutableList<String> = arrayListOf();
 
@@ -36,7 +38,7 @@ object p1 {
 //        val map = Util.initMap(input);
         var leftList: MutableList<Int> = ArrayList();
         var rightList: MutableList<Int> = ArrayList();
-        input.forEach{ i ->
+        input.forEach { i ->
             leftList.add(i.split("   ")[0].toInt());
             rightList.add(i.split("   ")[1].toInt())
         }
@@ -45,7 +47,7 @@ object p1 {
         rightList.sort();
         var dist = 0;
         for (i in 0 until leftList.size) {
-            dist += abs(leftList.get(i)- rightList.get(i));
+            dist += abs(leftList.get(i) - rightList.get(i));
         }
         firstResult = dist.toLong();
     }
@@ -55,7 +57,7 @@ object p1 {
 
         var leftList: MutableList<Int> = ArrayList();
         var rightList: MutableList<Int> = ArrayList();
-        input.forEach{ i ->
+        input.forEach { i ->
             leftList.add(i.split("   ")[0].toInt());
             rightList.add(i.split("   ")[1].toInt())
         }

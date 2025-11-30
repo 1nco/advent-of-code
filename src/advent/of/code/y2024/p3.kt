@@ -4,10 +4,12 @@ import advent.of.code.Reader
 import java.util.*
 
 
-object p3 {
+class p3 {
 
-    const val YEAR = "2024";
-    const val DAY = "3";
+    companion object {
+        val YEAR = "2024";
+        val DAY = "3";
+    }
 
     private var input: MutableList<String> = arrayListOf();
 
