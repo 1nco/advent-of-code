@@ -43,7 +43,6 @@ object `18thPuzzle` {
         input.forEach { line ->
             val direction = line.split(" ")[0]
             val length = line.split(" ")[1].toLong()
-            val color = line.split(" ")[2]
 
             var v = vertices.last().copy();
             for (i in 0..<length) {
