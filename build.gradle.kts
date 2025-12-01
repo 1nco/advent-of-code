@@ -22,4 +22,7 @@ tasks {
                 .map { zipTree(it) }
         )
     }
+    compileKotlin {
+        kotlinOptions.suppressWarnings = true
+    }
 }
