@@ -23,6 +23,6 @@ tasks {
         )
     }
     compileKotlin {
-        kotlinOptions.suppressWarnings = true
+//        kotlinOptions.suppressWarnings = true
     }
 }
