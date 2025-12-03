@@ -3,7 +3,7 @@ package advent.of.code
 //import advent.of.code.y2024.*
 import advent.of.code.y2025.*
 
-const val DAY = "3";
+const val DAY = "4";
 
 fun main() {
     if (p1.DAY == DAY) p1().solve();
