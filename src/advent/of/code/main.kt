@@ -9,4 +9,5 @@ fun main() {
     if (p1.DAY == DAY) p1().solve();
     if (p2.DAY == DAY) p2().solve();
     if (p3.DAY == DAY) p3().solve();
+    if (p4.DAY == DAY) p4().solve();
 }
